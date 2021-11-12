@@ -4,6 +4,10 @@ spring:
     url: jdbc:mysql://mysql:3306/demo
     username: root
     password: rootpw
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
   cloud:
     stream:
       bindings:
