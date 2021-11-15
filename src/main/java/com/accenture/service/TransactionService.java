@@ -1,14 +1,15 @@
-package service;
+package com.accenture.service;
 
-import entity.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import repository.ITransacRepository;
+
+import com.accenture.entity.Transaction;
+import com.accenture.repository.ITransacRepository;
 
 @Service
 @Transactional
-public class TransactionService implements ITransacService{
+public class TransactionService implements ITransactionService{
 
     @Autowired
     ITransacRepository transacRepository;
