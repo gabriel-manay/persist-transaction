@@ -49,6 +49,8 @@ public class Transaction {
 	private String POSEntryMode; // 162-163
 	private String centralProcessingDate; // 164-167
 	private String reimbursementAttribute; // 168
+
+	private String valid;
 	
 	public Transaction() {
 	}
@@ -334,8 +336,15 @@ public class Transaction {
 	public void setReimbursementAttribute(String reimbursementAttribute) {
 		this.reimbursementAttribute = reimbursementAttribute;
 	}
-	
-	
+
+	public String getValid() {
+		return valid;
+	}
+
+	public void setValid(String valid) {
+		this.valid = valid;
+	}
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	@Override

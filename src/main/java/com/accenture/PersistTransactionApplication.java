@@ -26,12 +26,15 @@ public class PersistTransactionApplication {
 	}
 
 	@Bean
-	public Consumer<Message<Transaction>> persistTransaction() {
+	public Consumer<Message<?>> persistTransaction() {
 		return message -> {
-			Transaction transaction = (Transaction) message.getPayload();
-			transactionService.save(transaction);
-			
-			logger.info("Se recibe transaccion: " + transaction.toString());
+			if(!message.getPayload().equals("No more lines")){
+				Transaction transaction = (Transaction) message.getPayload();
+				if(transaction.getTransactionCode() != null){
+					transactionService.save(transaction);
+					logger.info("Se recibe transaccion: " + transaction.toString());
+				}
+			}
 		};
 	}
 
