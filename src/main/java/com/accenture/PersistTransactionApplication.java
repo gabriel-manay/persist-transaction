@@ -1,5 +1,6 @@
 package com.accenture;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import org.slf4j.Logger;
@@ -26,14 +27,12 @@ public class PersistTransactionApplication {
 	}
 
 	@Bean
-	public Consumer<Message<?>> persistTransaction() {
+	public Consumer<Message<Transaction>> persistTransaction() {
 		return message -> {
-			if(!message.getPayload().equals("No more lines")){
-				Transaction transaction = (Transaction) message.getPayload();
-				if(transaction.getTransactionCode() != null){
-					transactionService.save(transaction);
-					logger.info("Se recibe transaccion: " + transaction.toString());
-				}
+			Transaction transaction = (Transaction) message.getPayload();
+			if(transaction.getTransactionCode() != null && !Objects.equals(transaction.getTransactionCode(), "AA")){
+				transactionService.save(transaction);
+				logger.info("Se recibe transaccion: " + transaction.toString());
 			}
 		};
 	}
